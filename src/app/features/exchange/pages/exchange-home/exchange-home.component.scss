@@ -1,0 +1,84 @@
+.wrapper {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loading {
+  font-style: italic;
+  margin-top: 1rem;
+}
+
+.error {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.toggle-history {
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #00aaff;
+  border-top: 1px solid #00aaff;
+  padding-top: 1rem;
+  width: 100%;
+}
+
+.toggle-history .label {
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  color: #009ee3;
+  text-transform: uppercase;
+}
+
+.toggle-history .icon {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #009ee3;
+}
+
+app-exchange-result {
+  width: 100%;
+  background: #e7f7fe;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.5rem;
+  color: #009ddc;
+  font-weight: bold;
+  border: 1px solid #cdefff;
+}
+
+app-footer {
+  width: 100%;
+  background-color: #00aaff;
+  color: white;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  position: relative;
+  bottom: 0;
+  left: 0;
+}
+
+input.ng-dirty.ng-valid {
+  background-color: #f4faff;
+  border-bottom: 2px solid #00aaff;
+  color: #00aaff;
+}
+
+input::placeholder {
+  color: #999;
+  font-style: italic;
+}

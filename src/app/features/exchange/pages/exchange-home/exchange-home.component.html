@@ -1,0 +1,26 @@
+<app-header></app-header>
+
+<div class="wrapper">
+  <app-exchange-form (search)="handleSearch($event)"></app-exchange-form>
+
+  <p *ngIf="loading" class="loading">Buscando cotação...</p>
+  <p *ngIf="error" class="error">{{ error }}</p>
+
+  <app-exchange-result
+    *ngIf="!loading && exchangeRate !== null"
+    [currencyCode]="selectedCode"
+    [rate]="exchangeRate"
+    [date]="date">
+  </app-exchange-result>
+
+  <p>
+    Histórico dos últimos dias
+  </p>
+
+  <app-exchange-history
+    *ngIf="showHistory && historyData.length > 0"
+    [history]="historyData">
+  </app-exchange-history>
+</div>
+
+<app-footer></app-footer>

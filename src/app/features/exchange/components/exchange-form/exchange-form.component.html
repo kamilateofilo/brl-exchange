@@ -1,0 +1,13 @@
+<form class="form" (ngSubmit)="submit()">
+    <input
+      type="text"
+      [(ngModel)]="currency"
+      name="currency"
+      maxlength="3"
+      placeholder="Enter the currency code"
+      required
+    />
+  
+    <button type="submit" [disabled]="!currency">EXCHANGE RESULT</button>
+  </form>
+  

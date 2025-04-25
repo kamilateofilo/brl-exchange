@@ -1,0 +1,36 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  
+    input {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-transform: uppercase;
+    }
+  
+    button {
+      width: 100%;
+      max-width: 300px;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 25px;
+      background-color: #00baff;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+  
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+  

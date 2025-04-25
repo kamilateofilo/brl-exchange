@@ -1,0 +1,37 @@
+.loading-history {
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+.history-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.history-list .history-card {
+  background: #f8f8f8;
+  padding: 0.75rem;
+  border-radius: 8px;
+}
+
+.history-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+}
+
+.history-card .card-header .up {
+  color: green;
+}
+
+.history-card .card-header .down {
+  color: red;
+}
+
+.history-card .card-value {
+  margin-top: 0.25rem;
+  font-weight: bold;
+  color: #00aaff;
+}

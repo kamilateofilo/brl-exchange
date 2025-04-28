@@ -6,7 +6,6 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { ExchangeFormComponent } from '../../components/exchange-form/exchange-form.component';
 import { ExchangeResultComponent } from '../../components/exchange-result/exchange-result.component';
-import { ExchangeHistoryComponent } from '../../components/exchange-history/exchange-history.component';
 
 @Component({
   selector: 'app-exchange-home',
@@ -17,7 +16,6 @@ import { ExchangeHistoryComponent } from '../../components/exchange-history/exch
     FooterComponent,
     ExchangeFormComponent,
     ExchangeResultComponent,
-    ExchangeHistoryComponent,
   ],
   templateUrl: './exchange-home.component.html',
   styleUrls: ['./exchange-home.component.scss']
@@ -28,22 +26,8 @@ export class ExchangeHomeComponent {
   date = '';
   loading = false;
   error = '';
-  showHistory = false;
-  historyData: { date: string; close: number }[] = [];
 
   constructor(private http: HttpClient) {}
-
-  toggleHistory() {
-    this.showHistory = !this.showHistory;
-  }
-
-  get toggleIcon(): string {
-    return this.showHistory ? '−' : '+';
-  }
-
-  get toggleText(): string {
-    return 'LAST 30 DAYS';
-  }
 
   handleSearch(code: string) {
     const formatted = code.trim().toUpperCase();
@@ -54,10 +38,8 @@ export class ExchangeHomeComponent {
     this.date = '';
     this.loading = true;
     this.error = '';
-    this.showHistory = false;
 
     const latestUrl = `http://localhost:3000/latest`;
-    const historyUrl = `http://localhost:3000/timeseries`;
 
     this.http.get<any>(latestUrl).subscribe({
       next: (res) => {
@@ -72,16 +54,6 @@ export class ExchangeHomeComponent {
       error: () => {
         this.error = 'Erro ao buscar cotação';
         this.loading = false;
-      }
-    });
-
-    this.http.get<any[]>(historyUrl).subscribe({
-      next: (res) => {
-        this.historyData = res;
-      },
-      error: () => {
-        console.warn('Histórico não carregado');
-        this.historyData = [];
       }
     });
   }

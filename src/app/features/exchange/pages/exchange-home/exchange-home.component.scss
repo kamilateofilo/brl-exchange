@@ -1,8 +1,10 @@
 .wrapper {
-  padding: 1.5rem;
+  min-height: 100vh;
+  padding: 1.5rem 1.5rem 4rem 1.5rem; 
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .loading {
@@ -17,68 +19,27 @@
   text-align: center;
 }
 
-.toggle-history {
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1rem;
-  margin-top: 2rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #00aaff;
-  border-top: 1px solid #00aaff;
-  padding-top: 1rem;
-  width: 100%;
-}
-
-.toggle-history .label {
-  font-size: 0.85rem;
-  font-weight: bold;
-  letter-spacing: 0.5px;
-  color: #009ee3;
-  text-transform: uppercase;
-}
-
-.toggle-history .icon {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #009ee3;
-}
-
 app-exchange-result {
+  max-width: 320px;
   width: 100%;
-  background: #e7f7fe;
-  padding: 1rem;
-  margin-top: 1rem;
-  border-radius: 4px;
+  margin-top: 2rem;
   text-align: center;
-  font-size: 1.5rem;
-  color: #009ddc;
+  font-size: 1rem;
   font-weight: bold;
   border: 1px solid #cdefff;
+  padding: 1rem;
+  border-radius: 8px;
 }
 
-app-footer {
+app-footer, .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   background-color: #00aaff;
   color: white;
   text-align: center;
   padding: 0.5rem 0;
   font-size: 0.75rem;
-  position: relative;
-  bottom: 0;
-  left: 0;
-}
-
-input.ng-dirty.ng-valid {
-  background-color: #f4faff;
-  border-bottom: 2px solid #00aaff;
-  color: #00aaff;
-}
-
-input::placeholder {
-  color: #999;
-  font-style: italic;
+  z-index: 1000;
 }

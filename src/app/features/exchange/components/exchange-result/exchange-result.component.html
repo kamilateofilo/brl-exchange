@@ -1,34 +1,29 @@
 <div class="result" *ngIf="rate !== null">
-    <div class="title-bar">
-      <p class="title">Exchange rate now</p>
-      <span class="pair">{{ currencyCode }}/BRL</span>
-    </div>
-  
-    <span class="date">{{ date }}</span>
-  
-    <div class="currency-box">
-      <p class="value">R$ {{ rate | number:'1.2-2' }}</p>
-    </div>
-  
-    <div class="history-header">
-      <strong>LAST 30 DAYS</strong>
-      <button *ngIf="!loading && exchangeRate" (click)="toggleHistory()" class="toggle-history">
-        {{ showHistory ? '−' : '+' }} Histórico dos últimos dias
-      </button>
-    </div>
-  
-    <p *ngIf="loadingHistory" class="loading-history">Carregando histórico...</p>
-  
-    <div class="history-list" *ngIf="!loadingHistory && dailyHistory.length">
-      <div *ngFor="let day of dailyHistory" class="history-card">
-        <div class="card-header">
-          <span>{{ day.date }}</span>
-          <span [class.up]="day.closeDiff!>=0" [class.down]="day.closeDiff!<0">
-            {{ day.closeDiff!>=0 ? '+' : '' }}{{ day.closeDiff }}
-          </span>
-        </div>
-        <div class="card-value">R$ {{ day.close | number:'1.2-2' }}</div>
-      </div>
-    </div>
+  <div class="title-bar">
+    <p class="title">Exchange rate now</p>
+    <span class="pair">{{ currencyCode }}/BRL</span>
   </div>
-  
+
+  <span class="date">{{ date }}</span>
+
+  <div class="currency-box">
+    <p class="value">R$ {{ rate | number:'1.2-2' }}</p>
+  </div>
+
+  <div class="history-header">
+    <strong>LAST 30 DAYS</strong>
+    <button 
+    *ngIf="!loadingHistory" 
+    (click)="toggleHistory()" 
+    class="plus-icon">
+    {{ showHistory ? '−' : '+' }}
+  </button>
+  </div>
+
+  <p *ngIf="loadingHistory" class="loading-history">Carregando histórico...</p>
+
+  <app-exchange-history
+    *ngIf="showHistory && dailyHistory.length"
+    [history]="dailyHistory">
+  </app-exchange-history>
+</div>

@@ -1,8 +1,3 @@
-.loading-history {
-  margin: 1rem 0;
-  font-style: italic;
-}
-
 .history-list {
   width: 100%;
   display: flex;
@@ -10,28 +5,39 @@
   gap: 0.5rem;
 }
 
-.history-list .history-card {
+.history-card {
   background: #f8f8f8;
   padding: 0.75rem;
   border-radius: 8px;
 }
 
-.history-card .card-header {
+.card-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #00aaff;
+  margin-bottom: 0.5rem;
+}
+
+.rates {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.diff {
+  text-align: left;
+  font-weight: bold;
   font-size: 0.9rem;
 }
 
-.history-card .card-header .up {
+.up {
   color: green;
 }
 
-.history-card .card-header .down {
+.down {
   color: red;
-}
-
-.history-card .card-value {
-  margin-top: 0.25rem;
-  font-weight: bold;
-  color: #00aaff;
 }

@@ -1,9 +1,13 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { ExchangeHistoryComponent } from '../exchange-history/exchange-history.component';
 
 interface DailyRate {
   date: string;
+  open: number;
+  high: number;
+  low: number;
   close: number;
   closeDiff?: number;
 }
@@ -11,7 +15,7 @@ interface DailyRate {
 @Component({
   selector: 'app-exchange-result',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ExchangeHistoryComponent],
   templateUrl: './exchange-result.component.html',
   styleUrls: ['./exchange-result.component.scss']
 })
@@ -22,7 +26,7 @@ export class ExchangeResultComponent implements OnChanges {
 
   dailyHistory: DailyRate[] = [];
   loadingHistory = false;
-  private apiKey = 'RVZG0GHEV2KORLNA';
+  showHistory = false;
 
   constructor(private http: HttpClient) {}
 
@@ -32,33 +36,31 @@ export class ExchangeResultComponent implements OnChanges {
     }
   }
 
+  toggleHistory() {
+    this.showHistory = !this.showHistory;
+  }
+
   private loadDailyHistory() {
     this.loadingHistory = true;
-    const url = 
-      `https://api-brl-exchange.actionlabs.com.br/api/1.0/open/dailyExchangeRate` +
-      `?apiKey=${this.apiKey}` +
-      `&from_symbol=BRL&to_symbol=${this.currencyCode}`;
+    const url = `http://localhost:3000/timeseries`;
 
-    console.log('🔗 URL dailyExchangeRate:', url);
-
-    this.http.get<any>(url).subscribe({
+    this.http.get<DailyRate[]>(url).subscribe({
       next: (res) => {
-        console.log('✅ dailyExchangeRate:', res);
-        const vals = (res.values || []).map((v: any) => ({
-          date: v.datetime,
-          close: parseFloat(v.close)
-        }));
-        this.dailyHistory = vals.map((item: DailyRate, i: number, arr: DailyRate[]) => {
-          if (i === arr.length - 1) return item;
+        console.log('✅ Histórico recebido:', res);
+
+        this.dailyHistory = res.map((item, i, arr) => {
+          const previous = arr[i + 1];
           return {
             ...item,
-            closeDiff: +(item.close - arr[i + 1].close).toFixed(2)
+            closeDiff: previous ? +(item.close - previous.close).toFixed(2) : 0
           };
         });
+
+        console.log('✅ dailyHistory montado:', this.dailyHistory);
         this.loadingHistory = false;
       },
       error: (err) => {
-        console.error('❌ Erro dailyExchangeRate:', err);
+        console.error('❌ Erro ao buscar timeseries:', err);
         this.loadingHistory = false;
       }
     });

@@ -1,15 +1,18 @@
-<div class="history-item" *ngFor="let item of enrichedHistory">
-    <div class="date">{{ item.date }}</div>
-  
-    <div class="rates">
-      <div>OPEN: R$ {{ item.open || '5.0666' }}</div>
-      <div>CLOSE: R$ {{ item.close }}</div>
-      <div>HIGH: R$ {{ item.high || '5.0689' }}</div>
-      <div>LOW: R$ {{ item.low || '4.9836' }}</div>
+<div class="history-list" *ngIf="enrichedHistory.length">
+  <div class="history-card" *ngFor="let item of enrichedHistory">
+    <div class="card-header">
+      <span>{{ item.date }}</span>
     </div>
-  
-    <div class="diff" [ngClass]="{ up: item.closeDiff >= 0, down: item.closeDiff < 0 }">
-      {{ item.closeDiff >= 0 ? '+' : '' }}{{ item.closeDiff }}% {{ item.closeDiff >= 0 ? '↑' : '↓' }}
+
+    <div class="rates">
+      <div>OPEN: R$ {{ item.open || '-' }}</div>
+      <div>HIGH: R$ {{ item.high || '-' }}</div>
+      <div>LOW: R$ {{ item.low || '-' }}</div>
+      <div>CLOSE: R$ {{ item.close }}</div>
+    </div>
+
+    <div class="diff" [ngClass]="{ 'up': item.closeDiff >= 0, 'down': item.closeDiff < 0 }">
+      CLOSE DIFF (%): {{ item.closeDiff >= 0 ? '+' : '' }}{{ item.closeDiff }}%
     </div>
   </div>
-  
+</div>

@@ -12,15 +12,6 @@
     [rate]="exchangeRate"
     [date]="date">
   </app-exchange-result>
-
-  <p>
-    Histórico dos últimos dias
-  </p>
-
-  <app-exchange-history
-    *ngIf="showHistory && historyData.length > 0"
-    [history]="historyData">
-  </app-exchange-history>
 </div>
 
 <app-footer></app-footer>

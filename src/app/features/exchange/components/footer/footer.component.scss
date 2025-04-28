@@ -1,11 +1,12 @@
-app-footer {
+app-footer, .footer {
+  position: fixed; 
+  bottom: 0;
+  left: 0;
   width: 100%;
   background-color: #00aaff;
   color: white;
   text-align: center;
   padding: 0.5rem 0;
   font-size: 0.75rem;
-  position: relative;
-  bottom: 0;
-  left: 0;
+  z-index: 1000;
 }
